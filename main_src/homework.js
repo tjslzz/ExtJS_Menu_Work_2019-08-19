@@ -82,3 +82,10 @@ var template = new Ext.Template([
     '<h1>Super Cool</h1>',
     '</div>'
 ])
+var homeworkMenu = new Ext.menu.Menu({
+    items: [
+        edit,
+        { xtype: 'menuseparator' },
+        insert
+    ]
+})
