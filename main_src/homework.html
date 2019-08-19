@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Layout HomeWork</title>
+    <title>Menu HomeWork</title>
 
     <link rel="stylesheet" type="text/css" href="../resources/css/ext-all.css" />
     <script type="text/javascript" src="../adapter/ext/ext-base.js"></script>
@@ -28,16 +28,16 @@
             })
 
             let panel = new Ext.Panel({
-                title: 'Weibo',
+                title: 'XXX博客',
                 shadow: true,
                 collapsible: true,
                 tpl: template,
                 height: 300,
-                data: { name: 'JerryLi', age: 22 },
+                data: { name: 'Jerry Li', age: 22 },
             })
 
             let form = new Ext.form.FormPanel({
-                title: '微博回复',
+                title: '博客回复',
                 height: 200,
                 items: [new Ext.form.HtmlEditor({
                     id: 'form',
@@ -60,7 +60,7 @@
             })
             var window = new Ext.Window({
                 id: 'main',
-                title: '微博',
+                title: '我的博客',
                 width: 750,
                 autoHeight: true,
                 items: [toolbar, panel, form, button, progress],
@@ -70,8 +70,6 @@
                 e.preventDefault();
                 homeworkMenu.showAt(e.getXY());
             })
-
-
         });
     </script>
 </head>

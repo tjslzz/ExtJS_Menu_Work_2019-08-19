@@ -6,14 +6,6 @@ let table = new Ext.Template([
     '<td> i am {name} </td><td> {age} year old</td>',
     '<tr></table>'
 ])
-let xtemplate = new Ext.XTemplate([
-    "<tpl if=\"value == ''\">",
-    '<button id=\"reply\" disabled>回复</button>',
-    '</tpl>',
-    "<tpl if=\"value != ''\">",
-    '<button id=\"reply\">回复</button>',
-    '</tpl>',
-])
 let edit = {
     text: '编辑',
     menu: {
@@ -32,13 +24,8 @@ let insert = {
         }]
     }
 }
-var homeworkMenu = new Ext.menu.Menu({
-    items: [
-        edit,
-        { xtype: 'menuseparator' },
-        insert
-    ]
-})
+
+/////////////////////////////////////////////////////////////////////////////
 let success = new Ext.util.DelayedTask(function () {
     Ext.Msg.alert('Congratulation！', '回复成功！')
     table.append('inner', { name: 'jerryLi', age: 22 })
@@ -51,11 +38,20 @@ let progess = {
         timer += 1.0
         if (timer > 3) {
             Ext.getCmp('progress').updateText('已回复！')
+            timer = 0.0
             return false
         }
     },
     interval: 1000
 }
+let xtemplate = new Ext.XTemplate([
+    "<tpl if=\"value == ''\">",
+    '<button id=\"reply\" disabled>回复</button>',
+    '</tpl>',
+    "<tpl if=\"value != ''\">",
+    '<button id=\"reply\">回复</button>',
+    '</tpl>',
+])
 let submitCheck = {
     run: function () {
         xtemplate.overwrite('submit', { value: Ext.getCmp('form').getValue() })
@@ -68,6 +64,7 @@ let submitCheck = {
 }
 new Ext.util.TaskRunner().start(submitCheck)
 
+/////////////////////////////////////////////////////////////////////////////
 var start = {
     text: '开始',
     menu: {
