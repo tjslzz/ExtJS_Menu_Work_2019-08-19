@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Layout HomeWork</title>
+
+    <link rel="stylesheet" type="text/css" href="../resources/css/ext-all.css" />
+    <script type="text/javascript" src="../adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../ext-all.js"></script>
+    <script type="text/javascript" src="practiceMenu.js"></script>
+    <script type="text/javascript" src="homework.js"></script>
+    <script>
+        Ext.onReady(function () {
+            let toolbar = new Ext.Toolbar({
+                renderTo: document.body,
+                items: [
+                    start,
+                    { xtype: 'tbseparator', width: 50 },
+                    { text: '主菜单', menu: homeworkMenu },
+                    { xtype: 'tbspacer', width: 50 },
+                    practiceMenu,
+                    { xtype: 'tbfill' },
+                    { text: '补充', disabled: true }
+                ]
+            })
+
+            let panel = new Ext.Panel({
+                title: 'Weibo',
+                shadow: true,
+                collapsible: true,
+                tpl: template,
+                height: 300,
+                data: { name: 'JerryLi', age: 22 },
+            })
+
+            let form = new Ext.form.FormPanel({
+                title: '微博回复',
+                height: 200,
+                items: [new Ext.form.HtmlEditor({
+                    id: 'form',
+                    enableAlignments: true,
+                    enableColors: true,
+                    enableFont: true,
+                    enableFontSize: true,
+                    enableFormat: true,
+                    enableLinks: true,
+                    enableLists: true,
+                    enableSourceEdit: true,
+                })]
+            })
+            let button = { html: "<div id='submit' style='float:right'></div>" }
+            let progress = new Ext.ProgressBar({
+                id: 'progress',
+                animate: true,
+                text: '',
+                value: 0
+            })
+            var window = new Ext.Window({
+                id: 'main',
+                title: '微博',
+                width: 750,
+                autoHeight: true,
+                items: [toolbar, panel, form, button, progress],
+            })
+            window.show()
+            Ext.get('main').on('contextmenu', function (e) {
+                e.preventDefault();
+                homeworkMenu.showAt(e.getXY());
+            })
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <h1 style="text-align:center">Homework</h1>
+</body>
+
+</html>
