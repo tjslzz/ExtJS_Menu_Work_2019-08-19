@@ -52,17 +52,14 @@ let xtemplate = new Ext.XTemplate([
     '<button id=\"reply\">回复</button>',
     '</tpl>',
 ])
-let submitCheck = {
-    run: function () {
-        xtemplate.overwrite('submit', { value: Ext.getCmp('form').getValue() })
-        Ext.get('reply').on('click', function () {
-            success.delay(3000);
-            new Ext.util.TaskRunner().start(progess)
-        })
-    },
-    interval: 1000
-}
-new Ext.util.TaskRunner().start(submitCheck)
+var submit = new Ext.Button({
+    id: 'submit',
+    text: '回复',
+    handler: () => {
+        success.delay(3000);
+        new Ext.util.TaskRunner().start(progess)
+    }
+})
 
 /////////////////////////////////////////////////////////////////////////////
 var start = {
@@ -88,4 +85,21 @@ var homeworkMenu = new Ext.menu.Menu({
         { xtype: 'menuseparator' },
         insert
     ]
+})
+var htmlEgitor = new Ext.form.HtmlEditor({
+    id: 'form',
+    enableAlignments: true,
+    enableColors: true,
+    enableFont: true,
+    enableFontSize: true,
+    enableFormat: true,
+    enableLinks: true,
+    enableLists: true,
+    enableSourceEdit: true,
+    listeners: {
+        sync: (a, b) => {
+            if (b == '') Ext.getCmp('submit').disable()
+            else Ext.getCmp('submit').enable()
+        }
+    }
 })

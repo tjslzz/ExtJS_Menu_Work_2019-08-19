@@ -39,19 +39,9 @@
             let form = new Ext.form.FormPanel({
                 title: '博客回复',
                 height: 200,
-                items: [new Ext.form.HtmlEditor({
-                    id: 'form',
-                    enableAlignments: true,
-                    enableColors: true,
-                    enableFont: true,
-                    enableFontSize: true,
-                    enableFormat: true,
-                    enableLinks: true,
-                    enableLists: true,
-                    enableSourceEdit: true,
-                })]
+                items: [htmlEgitor],
+                buttons: [submit]
             })
-            let button = { html: "<div id='submit' style='float:right'></div>" }
             let progress = new Ext.ProgressBar({
                 id: 'progress',
                 animate: true,
@@ -63,7 +53,7 @@
                 title: '我的博客',
                 width: 750,
                 autoHeight: true,
-                items: [toolbar, panel, form, button, progress],
+                items: [toolbar, panel, form, progress],
             })
             window.show()
             Ext.get('main').on('contextmenu', function (e) {
