@@ -28,7 +28,7 @@ let insert = {
 /////////////////////////////////////////////////////////////////////////////
 let success = new Ext.util.DelayedTask(function () {
     Ext.Msg.alert('Congratulation！', '回复成功！')
-    table.append('inner', { name: 'jerryLi', age: 22 })
+    Ext.getDom('inner').innerHTML += Ext.getCmp('form').getValue()
 });
 let timer = 0.0;
 let progess = {
@@ -44,14 +44,6 @@ let progess = {
     },
     interval: 1000
 }
-let xtemplate = new Ext.XTemplate([
-    "<tpl if=\"value == ''\">",
-    '<button id=\"reply\" disabled>回复</button>',
-    '</tpl>',
-    "<tpl if=\"value != ''\">",
-    '<button id=\"reply\">回复</button>',
-    '</tpl>',
-])
 var submit = new Ext.Button({
     id: 'submit',
     text: '回复',
